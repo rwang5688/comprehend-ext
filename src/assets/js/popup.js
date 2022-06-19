@@ -21,12 +21,8 @@ reset.addEventListener( 'click', () => {
 } );
 
 notify.addEventListener( 'click', () => {
-	fetch('https://postman-echo.com/get?key1="'+ text.value + '"').then(r => r.text()).then(response => {
-    	result = response;
-	})
-
 	chrome.runtime.sendMessage( '', {
 		type: 'notification',
-		message: result
+		message: text.value
 	});
 } );

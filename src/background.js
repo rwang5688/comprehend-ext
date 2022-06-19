@@ -19,18 +19,25 @@ chrome.contextMenus.onClicked.addListener( ( info, tab ) => {
 } );
 
 const notify = message => {
-	chrome.storage.local.get( ['notifyCount'], data => {
-		let value = data.notifyCount || 0;
-		chrome.storage.local.set({ 'notifyCount': Number( value ) + 1 });
-	} );
+	fetch('https://postman-echo.com/get?message="'+ message + '"')
+		.then(r => r.text())
+		.then(response => {
+			chrome.storage.local.get( ['notifyCount'], data => {
+				let value = data.notifyCount || 0;
+				chrome.storage.local.set({ 'notifyCount': Number( value ) + 1 });
+			} );
 
-	return chrome.notifications.create(
-		'',
-		{
-			type: 'basic',
-			title: 'Notify!',
-			message: message || 'Notify!',
-			iconUrl: './assets/icons/128.png',
-		}
-	);
+			// transform response to result
+			result = response;
+
+			return chrome.notifications.create(
+				'',
+				{
+					type: 'basic',
+					title: 'Notify!',
+					message: result || 'Notify!',
+					iconUrl: './assets/icons/128.png',
+				}
+			);
+	})
 };
