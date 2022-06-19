@@ -22,6 +22,7 @@ const notify = message => {
 	fetch('https://postman-echo.com/get?message="'+ message + '"')
 		.then(r => r.text())
 		.then(response => {
+			// update notification count
 			chrome.storage.local.get( ['notifyCount'], data => {
 				let value = data.notifyCount || 0;
 				chrome.storage.local.set({ 'notifyCount': Number( value ) + 1 });
@@ -30,6 +31,7 @@ const notify = message => {
 			// transform response to result
 			result = response;
 
+			// create notification with result
 			return chrome.notifications.create(
 				'',
 				{
