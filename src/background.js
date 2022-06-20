@@ -22,7 +22,7 @@ const notify = message => {
 	var endpointUrl = 'https://z5a6imy452.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api';
 
 	var body = {
-		"operation": "echo",
+		"operation": "detect",
 		"payload": {
 			"message": message
 		}
