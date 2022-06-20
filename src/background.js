@@ -31,7 +31,7 @@ const notify = message => {
 	fetch(endpointUrl,
 		{
 			method: 'POST',
-			mode:  'no-cors',
+			mode:	'no-cors',
 			headers: {
 				'Content-Type': 'application/json'
 			},
