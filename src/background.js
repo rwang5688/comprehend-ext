@@ -35,9 +35,9 @@ const notify = message => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify( body)
+			body: JSON.stringify( body )
 		})
-		.then(r => r.text())
+		.then(r => r)
 		.then(response => {
 			// update notification count
 			chrome.storage.local.get( ['notifyCount'], data => {
@@ -46,7 +46,7 @@ const notify = message => {
 			} );
 
 			// transform response to result
-			result = response;
+			result = JSON.stringify( response );
 
 			// create notification with result
 			return chrome.notifications.create(
