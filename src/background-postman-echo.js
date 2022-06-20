@@ -19,24 +19,7 @@ chrome.contextMenus.onClicked.addListener( ( info, tab ) => {
 } );
 
 const notify = message => {
-	var endpointUrl = 'https://z5a6imy452.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api';
-
-	var body = {
-		"operation": "echo",
-		"payload": {
-			"message": message
-		}
-	};
-
-	fetch(endpointUrl,
-		{
-			method: 'POST',
-			mode:  'no-cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify( body)
-		})
+	fetch('https://postman-echo.com/get?message="'+ message + '"')
 		.then(r => r.text())
 		.then(response => {
 			// update notification count
