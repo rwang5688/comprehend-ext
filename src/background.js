@@ -19,25 +19,9 @@ chrome.contextMenus.onClicked.addListener( ( info, tab ) => {
 } );
 
 const notify = message => {
-	var endpointUrl = 'https://z5a6imy452.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api';
-
-	var body = {
-		"operation": "detect",
-		"payload": {
-			"message": message
-		}
-	};
-
-	fetch(endpointUrl,
-		{
-			method: 'POST',
-			mode:	'no-cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify( body )
-		})
-		.then(r => r)
+	var urlBase = 'https://z5a6imy452.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api?';
+	fetch(urlBase + 'message="' + message + '"')
+		.then(r => r.text())
 		.then(response => {
 			// update notification count
 			chrome.storage.local.get( ['notifyCount'], data => {
@@ -46,7 +30,7 @@ const notify = message => {
 			} );
 
 			// transform response to result
-			result = JSON.stringify( response );
+			result = response;
 
 			// create notification with result
 			return chrome.notifications.create(

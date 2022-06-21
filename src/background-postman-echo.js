@@ -19,7 +19,9 @@ chrome.contextMenus.onClicked.addListener( ( info, tab ) => {
 } );
 
 const notify = message => {
-	fetch('https://postman-echo.com/get?message="'+ message + '"')
+	var urlBase = 'https://postman-echo.com/get?';
+	fetch(urlBase + 'message="' + message + '"')
+	fetch(urlBase + message + '"')
 		.then(r => r.text())
 		.then(response => {
 			// update notification count
