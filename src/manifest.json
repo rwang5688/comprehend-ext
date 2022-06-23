@@ -4,7 +4,7 @@
 	"version": "1.0",
 	"manifest_version": 3,
     "host_permissions": [
-		"https://z5a6imy452.execute-api.us-west-2.amazonaws.com/*",
+		"https://e51stz2448.execute-api.us-west-2.amazonaws.com/*",
         "https://postman-echo.com/*"
     ],
 	"permissions": [
