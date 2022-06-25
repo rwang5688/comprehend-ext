@@ -19,7 +19,7 @@ chrome.contextMenus.onClicked.addListener( ( info, tab ) => {
 } );
 
 const notify = message => {
-	var urlBase = 'https://z5a6imy452.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api?';
+	var urlBase = 'https://8r9rond8o8.execute-api.us-west-2.amazonaws.com/Prod/comprehend-api?';
 	fetch(urlBase + 'message="' + message + '"')
 		.then(r => r.text())
 		.then(response => {
